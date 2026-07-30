@@ -3,7 +3,6 @@
 from time import sleep
 from random import shuffle
 from copy import deepcopy
-import json
 
 
 def assign_exercises(training_days, training_minutes):
@@ -145,7 +144,8 @@ def get_training_minutes(min_training_minutes, max_training_minutes):
     print("\nComprobando si la respuesta introducida esta dentro de los límites...")
     sleep(1)
     if minutes < min_training_minutes:
-        print("Se ha introducido muy poco tiempo, se cambiará por el mínimo de {} minutos".format(min_training_minutes))
+        print("Se ha introducido muy poco tiempo, se cambiará por el mínimo de {} minutos"
+              .format(min_training_minutes))
         minutes = min_training_minutes
         return minutes
     elif minutes > max_training_minutes:
@@ -154,6 +154,22 @@ def get_training_minutes(min_training_minutes, max_training_minutes):
         minutes = max_training_minutes
         return minutes
     return minutes
+
+
+def final_format(warn_up,exercises):
+
+    for calentamiento, warns_ups in warn_up.items():
+        print("{}:".format(calentamiento.upper().replace("_", " ")))
+        for exercise_group in warns_ups:
+            print("\t{}".format(exercise_group.upper()))
+
+    for day, training in exercises.items():
+        print("{}:".format(day.upper().replace("_", " ")))
+        for exercise_group in training:
+            print("\t{}".format(exercise_group.upper()))
+            for index, exercise in enumerate(exercises[day][exercise_group]):
+                print("\t\t{} - {}".format(index, exercise))
+        print("\n")
 
 
 def main():
@@ -166,10 +182,9 @@ def main():
     training_minutes = get_training_minutes(min_training_minutes, max_training_minutes)
 
     exercises, warn_up = assign_exercises(training_days,training_minutes)
-    result = warn_up | exercises
     print("\nCalculando resultado...")
     sleep(1)
-    print(json.dumps(result, indent=4, ensure_ascii=False))
+    final_format(warn_up, exercises)
 
 if __name__ == "__main__":
     main()
