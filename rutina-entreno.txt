@@ -54,7 +54,7 @@ Calentamiento:
 
 Movilidad cuerpo
 Movilidad pierna
-Bicicleta, 10x1
+Bicicleta
 
 Estiramientos:
 

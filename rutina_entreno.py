@@ -31,7 +31,7 @@ def assign_exercises(training_days, training_minutes):
 
 def get_warn_up(calentamiento_list, exercises_training_time):
     # get the 10 minutes warn-up
-    exercises_training = exercises_training_time/5
+    exercises_training = int(exercises_training_time/5)
     warn_up_groups = list(calentamiento_list)
     copy_warn_up = deepcopy(calentamiento_list)
     shuffle(warn_up_groups)
@@ -39,12 +39,12 @@ def get_warn_up(calentamiento_list, exercises_training_time):
     for x in range(exercises_training):
         distribute_warn_up = x % len(warn_up_groups)
 
-        if not copy_warn_up[warn_up_groups[distribute_warn_up]]:
-            copy_warn_up[warn_up_groups[distribute_warn_up]] = (
-                deepcopy(calentamiento_list[warn_up_groups[distribute_warn_up]]))
+        name_warn_up = copy_warn_up[warn_up_groups[distribute_warn_up]]
+        if not name_warn_up:
+            name_warn_up = (deepcopy(calentamiento_list[warn_up_groups[distribute_warn_up]]))
             shuffle(copy_warn_up[warn_up_groups[distribute_warn_up]])
 
-        warn_up.append(copy_warn_up[warn_up_groups[distribute_warn_up]].pop())
+        warn_up.append(name_warn_up.pop())
 
     diccionario_warn_up = {"calentamiento": warn_up}
     return diccionario_warn_up
@@ -52,13 +52,16 @@ def get_warn_up(calentamiento_list, exercises_training_time):
 
 def assign_exercises_to_days(exercise_number, training, exercise_list):
 
-    for day in range(len(training)):
-        dia = list(training.keys())
-        processed_exercises = list((training[dia[day]]).keys())
-        copy_exercise_list = deepcopy(exercise_list)
-        shuffle(copy_exercise_list)
+    for day_name, groups in training.items():
 
-        #Calcular cuantos ejercicios hay disponibles entre los grupos musculares que le han tocado a cada día.
+        processed_exercises = list(groups.keys())
+
+        copy_exercise_list = deepcopy(exercise_list)
+
+        for clave in copy_exercise_list.values():
+            shuffle(clave)
+
+        # Repartir ejercicios
 
         for exercise in range(exercise_number):
             number_exercise = exercise%len(processed_exercises)
@@ -69,7 +72,7 @@ def assign_exercises_to_days(exercise_number, training, exercise_list):
                 shuffle(copy_exercise_list[name_exercise_group])
 
             new_exercise = copy_exercise_list[name_exercise_group].pop()
-            training[dia[day]][name_exercise_group].append(new_exercise)
+            groups[name_exercise_group].append(new_exercise)
 
     return training
 
