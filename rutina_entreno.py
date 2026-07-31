@@ -6,7 +6,7 @@ from copy import deepcopy
 
 
 def assign_exercises(training_days, training_minutes):
-    exercises_training_time = 10
+    exercises_training_time = 30
     exercise_number = ((training_minutes -exercises_training_time)// 5)
     exercise_list, calentamiento_list = get_exercise_list()
 
@@ -41,11 +41,11 @@ def get_warn_up(calentamiento_list, exercises_training_time):
         name_warn_up = copy_warn_up[warn_up_groups[distribute_warn_up]]
         if not name_warn_up:
             name_warn_up = (deepcopy(calentamiento_list[warn_up_groups[distribute_warn_up]]))
-            shuffle(copy_warn_up[warn_up_groups[distribute_warn_up]])
+            shuffle(name_warn_up)
 
         warn_up.append(name_warn_up.pop())
 
-    diccionario_warn_up = {"calentamiento": warn_up}
+    diccionario_warn_up = {"calentamiento(10 minutos x día)": warn_up}
     return diccionario_warn_up
 
 
@@ -159,17 +159,30 @@ def get_training_minutes(min_training_minutes, max_training_minutes):
 def final_format(warn_up,exercises):
 
     for calentamiento, warns_ups in warn_up.items():
+        print("*" * 40)
         print("{}:".format(calentamiento.upper().replace("_", " ")))
-        for exercise_group in warns_ups:
-            print("\t{}".format(exercise_group.upper()))
+        print("*" * 40 + "\n")
+        for index, exercise_group in enumerate(warns_ups):
+            print("\t{} - {}".format(index,exercise_group))
 
     for day, training in exercises.items():
+        print("=" * 40)
         print("{}:".format(day.upper().replace("_", " ")))
+        print("=" * 40 + "\n")
         for exercise_group in training:
             print("\t{}".format(exercise_group.upper()))
-            for index, exercise in enumerate(exercises[day][exercise_group]):
+            for index, exercise in enumerate(training[exercise_group], start=1):
                 print("\t\t{} - {}".format(index, exercise))
         print("\n")
+
+
+        save_to_txt = input("¿Quieres guardar el resultado en un archivo .txt? [S/N]: ")
+        if save_to_txt.upper() == "S":
+            with open("entreno.txt", "w") as file:
+
+        elif save_to_txt.upper() == "N":
+            print("No Se ha guardado un archivo")
+            return
 
 
 def main():
