@@ -1,6 +1,6 @@
 
 ╔════════════════════════════════════════════════════════════════════════╗
-║           ─────  10 MINUTOS AL INICIO DE CADA SESION  ─────            ║
+║           ─────  30 MINUTOS AL INICIO DE CADA SESION  ─────            ║
 ║                                                                        ║
 ║    ███  ██  █    ████ █  █ ████  ██  █   █ ████ ████ █  █ ████  ██     ║
 ║   █    █  █ █    █    ██ █  ██  █  █ ██ ██  ██  █    ██ █  ██  █  █    ║
@@ -17,13 +17,25 @@
 
 
 ****************************************
-CALENTAMIENTO(10 MINUTOS X DÍA):
+CALENTAMIENTO(30 MINUTOS X DÍA):
 ****************************************
 
-	0 - Bicicleta
+	1 - Bicicleta
 
 
-	1 - Rutina general de estiramientos
+	2 - Rutina general de estiramientos
+
+
+	3 - Movilidad pierna
+
+
+	4 - Rutina general de estiramientos
+
+
+	5 - Movilidad cuerpo
+
+
+	6 - Rutina general de estiramientos
 
 
 
@@ -48,50 +60,24 @@ CALENTAMIENTO(10 MINUTOS X DÍA):
 DÍA 1:
 ========================================
 
-	PECHO
-		1 - Press de banca declinado alternado con mancuernas, 3x12
-		2 - Press inclinado con mancuernas, 3x12
-		3 - Flexiones, 4x10
-	BÍCEPS
-		1 - Curl alternado con banda elástica, 3x10
-		2 - Curl con barra, 4x10
-		3 - Curl martillo con mancuernas, 3x10
 	ESPALDA
 		1 - Remo sentado con banda elástica, 4x10
 		2 - Remo al cuello con banda elástica, 4x10
-
-
-
-╔════════════════════════════════════════════════════════════════════════╗
-║                     ─────  TU PLAN SEMANAL  ─────                      ║
-║                                                                        ║
-║   ████ █  █ ████ ███  ████ █  █  ██  █   █ ████ ████ █  █ ████  ██     ║
-║   █    ██ █  ██  █  █ █    ██ █ █  █ ██ ██  ██  █    ██ █  ██  █  █    ║
-║   ███  █ ██  ██  ███  ███  █ ██ ████ █ █ █  ██  ███  █ ██  ██  █  █    ║
-║   █    █  █  ██  █ █  █    █  █ █  █ █   █  ██  █    █  █  ██  █  █    ║
-║   ████ █  █  ██  █  █ ████ █  █ █  █ █   █ ████ ████ █  █  ██   ██     ║
-║                                                                        ║
-║                 [==|==]           o           [==|==]                  ║
-║                    |             /|\             |                     ║
-║                   / \            / \            / \                    ║
-║                                                                        ║
-║                        una serie mas y lo dejo                         ║
-╚════════════════════════════════════════════════════════════════════════╝
+	HOMBRO
+		1 - Elevaciones frontales con barra, 4x10
+	PIERNA
+		1 - Sentadilla split con mancuernas, 4x10
 
 
 ========================================
 DÍA 2:
 ========================================
 
-	PIERNA
-		1 - Sentadilla split con barra, 4x10
-		2 - Sentadilla, 4x10
-		3 - Sentadilla split con mancuernas, 4x10
-	HOMBRO
-		1 - Elevaciones laterales con mancuernas, 4x10
-		2 - Elevaciones frontales con barra, 4x10
-		3 - Press Arnold con mancuernas, 4x10
 	TRÍCEPS
-		1 - Press de copa con mancuerna de pie, 4x10
+		1 - Flexiones sobre los antebrazos, 4x10
 		2 - Extensión mancuerna tras nuca con una mano (de pie), 3x10
+	BÍCEPS
+		1 - Curl con barra, 4x10
+	PECHO
+		1 - Aperturas en banco inclinado, 3x10
 

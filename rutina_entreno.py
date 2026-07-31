@@ -99,7 +99,7 @@ training_sprite=(r"""
 """)
 
 txt_sprite=(r"""
-    ________________________________________________________________
+     ________________________________________________________________
     |                                                            \
     |                                                             \
     |                                                              |
@@ -166,7 +166,9 @@ def get_warn_up(calentamiento_list, exercises_training_time):
 
         name_warn_up = copy_warn_up[warn_up_groups[distribute_warn_up]]
         if not name_warn_up:
-            copy_warn_up[warn_up_groups[distribute_warn_up]] = (deepcopy(calentamiento_list[warn_up_groups[distribute_warn_up]]))
+            copy_warn_up[warn_up_groups[distribute_warn_up]] = \
+                (deepcopy(calentamiento_list[warn_up_groups[distribute_warn_up]]))
+            name_warn_up = copy_warn_up[warn_up_groups[distribute_warn_up]]
             shuffle(name_warn_up)
 
         warn_up.append(name_warn_up.pop())
@@ -277,7 +279,7 @@ def get_training_minutes(min_training_minutes, max_training_minutes):
             minutes = int(input("\n[min: {}] [max: {} ({}h)]: "
                                    .format(min_training_minutes, max_training_minutes, max_training_hours)))
             if minutes == 0:
-                minutes = 0
+                minutes = 1
         except ValueError:
             print("Valor incorrecto, introduzca un número")
             minutes = None
