@@ -236,12 +236,10 @@ def get_training_days(min_training_days, max_training_days):
     limpiar_terminal()
     print(days_sprite)
     days = None
-    while not days:
+    while days is None:
         try:
             days = int(input("\n[min: {}] [max: {}]: "
                              .format(min_training_days, max_training_days)))
-            if days == 0:
-                days = 1
         except ValueError:
             print("\nValor incorrecto, introduzca un número")
             days = None
@@ -274,12 +272,10 @@ def get_training_minutes(min_training_minutes, max_training_minutes):
     print(time_sprite)
     minutes = None
     max_training_hours = int(max_training_minutes / 60)
-    while not minutes:
+    while minutes is None:
         try:
             minutes = int(input("\n[min: {}] [max: {} ({}h)]: "
                                    .format(min_training_minutes, max_training_minutes, max_training_hours)))
-            if minutes == 0:
-                minutes = 1
         except ValueError:
             print("Valor incorrecto, introduzca un número")
             minutes = None

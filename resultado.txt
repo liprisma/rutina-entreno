@@ -1,6 +1,6 @@
 
 ╔════════════════════════════════════════════════════════════════════════╗
-║           ─────  30 MINUTOS AL INICIO DE CADA SESION  ─────            ║
+║           ─────  10 MINUTOS AL INICIO DE CADA SESION  ─────            ║
 ║                                                                        ║
 ║    ███  ██  █    ████ █  █ ████  ██  █   █ ████ ████ █  █ ████  ██     ║
 ║   █    █  █ █    █    ██ █  ██  █  █ ██ ██  ██  █    ██ █  ██  █  █    ║
@@ -17,25 +17,13 @@
 
 
 ****************************************
-CALENTAMIENTO(30 MINUTOS X DÍA):
+CALENTAMIENTO(10 MINUTOS X DÍA):
 ****************************************
 
 	1 - Bicicleta
 
 
 	2 - Rutina general de estiramientos
-
-
-	3 - Movilidad pierna
-
-
-	4 - Rutina general de estiramientos
-
-
-	5 - Movilidad cuerpo
-
-
-	6 - Rutina general de estiramientos
 
 
 
@@ -60,24 +48,74 @@ CALENTAMIENTO(30 MINUTOS X DÍA):
 DÍA 1:
 ========================================
 
-	ESPALDA
-		1 - Remo sentado con banda elástica, 4x10
-		2 - Remo al cuello con banda elástica, 4x10
-	HOMBRO
-		1 - Elevaciones frontales con barra, 4x10
 	PIERNA
-		1 - Sentadilla split con mancuernas, 4x10
+		1 - Sentadilla sumo con pesa rusa, 4x10
+		2 - Sentadillas con salto, 4x12
+		3 - Sentadilla búlgara, 3x10
+		4 - Sentadilla, 4x10
+	PECHO
+		1 - Press banca, 4x12
+		2 - Press martillo en banco inclinado con mancuernas, 3x12
+		3 - Aperturas en banco inclinado, 3x10
+		4 - Flexiones, 4x10
 
 
 ========================================
 DÍA 2:
 ========================================
 
+	HOMBRO
+		1 - Press de hombros sentado con mancuernas (agarre neutro), 4x10
+		2 - Press Arnold con mancuernas, 4x10
+		3 - Elevaciones laterales con mancuernas, 4x10
+		4 - Press militar con barra (agarre abierto), 4x10
+		5 - Elevaciones frontales con barra, 4x10
+		6 - Press de hombros sentado con mancuernas (agarre neutro), 4x10
+		7 - Press militar con barra (agarre abierto), 4x10
+		8 - Elevaciones laterales con mancuernas, 4x10
+
+
+========================================
+DÍA 3:
+========================================
+
 	TRÍCEPS
 		1 - Flexiones sobre los antebrazos, 4x10
-		2 - Extensión mancuerna tras nuca con una mano (de pie), 3x10
+		2 - Extensión de tríceps acostado con mancuerna, 3x10
+		3 - Press de copa con mancuerna de pie, 4x10
+		4 - Patada de tríceps con banda elástica, 3x10
+		5 - Extensión mancuerna tras nuca con una mano (de pie), 3x10
+		6 - Flexiones sobre los antebrazos, 4x10
+		7 - Extensión mancuerna tras nuca con una mano (de pie), 3x10
+		8 - Press de copa con mancuerna de pie, 4x10
+
+
+========================================
+DÍA 4:
+========================================
+
 	BÍCEPS
-		1 - Curl con barra, 4x10
-	PECHO
-		1 - Aperturas en banco inclinado, 3x10
+		1 - Curl martillo con mancuernas, 3x10
+		2 - Curl agarre prono con mancuernas, 3x10
+		3 - Curl con barra, 4x10
+		4 - Curl alternado con banda elástica, 3x10
+		5 - Curl invertido con barra, 4x10
+		6 - Curl con barra, 4x10
+		7 - Curl agarre prono con mancuernas, 3x10
+		8 - Curl invertido con barra, 4x10
+
+
+========================================
+DÍA 5:
+========================================
+
+	ESPALDA
+		1 - Remo con banda elástica (de pie), 4x10
+		2 - Remo supino con mancuernas, 4x10
+		3 - Remo al cuello con banda elástica, 4x10
+		4 - Remo inclinado en banco con mancuernas (agarre prono), 4x10
+		5 - Remo sentado con banda elástica, 4x10
+		6 - Remo sentado con banda elástica, 4x10
+		7 - Remo inclinado en banco con mancuernas (agarre prono), 4x10
+		8 - Remo supino con mancuernas, 4x10
 
