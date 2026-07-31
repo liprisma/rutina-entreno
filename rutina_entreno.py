@@ -1,12 +1,138 @@
 # Este es un programa que sirve para generar una rutina de entreno (con estiramientos) a partir de unos días y horas
 # Que el usuario proporciona al iniciar el programa
+#Se recomienda ejecutar el programa en una terminal pura del sistema operativo correspondiente.
+import os
 from time import sleep
 from random import shuffle
 from copy import deepcopy
 
 
-def assign_exercises(training_days, training_minutes):
-    exercises_training_time = 30
+final_sprite = ("""
+╔════════════════════════════════════════════════════════════════════════╗
+║                  ▄▄▄███  TU RUTINA ESTA LISTA  ███▄▄▄                  ║
+║                                                                        ║
+║                     ██   █████  ██████    █    █████                   ║
+║                    █  █  █    █   ██    ████  █                        ║
+║                   ██████ █    █   ██   █    █  ████                    ║
+║                   █    █ █    █   ██   █    █      █                   ║
+║                   █    █ █████  ██████  ████  █████                    ║
+║                                                                        ║
+║            [==|=====|==]   ahora toca sudar   [==|=====|==]            ║
+╚════════════════════════════════════════════════════════════════════════╝
+""")
+
+initial_sprite= ("""
+╔════════════════════════════════════════════════════════════════════════╗
+║            ▄▄▄███  GENERADOR DE RUTINAS DE ENTRENO  ███▄▄▄             ║
+║                                                                        ║
+║ █████  ██████ ██████ █    █ █    █ ██████ █    █ ██████ █████   ████   ║
+║ █    █   ██   █      ██   █ █    █ █      ██   █   ██   █    █ █    █  ║
+║ █████    ██   ████   █ ██ █ █    █ ████   █ ██ █   ██   █    █ █    █  ║
+║ █    █   ██   █      █   ██  █  █  █      █   ██   ██   █    █ █    █  ║
+║ █████  ██████ ██████ █    █   ██   ██████ █    █ ██████ █████   ████   ║
+║                                                                        ║
+║         [==|=====|==]   entrena listo, no duro   [==|=====|==]         ║
+╚════════════════════════════════════════════════════════════════════════╝
+""")
+days_sprite = ("""
+╔════════════════════════════════════════════════════════════════════════╗
+║                       ─────  PASO 1 DE 2  ─────                        ║
+║                                                                        ║
+║                      █████     █     ██    █████                       ║
+║                      █    █ ██████  █  █  █                            ║
+║                      █    █   ██   ██████  ████                        ║
+║                      █    █   ██   █    █      █                       ║
+║                      █████  ██████ █    █ █████                        ║
+║                                                                        ║
+║                 ¿cuantos dias vas a pisar el gimnasio?                 ║
+╚════════════════════════════════════════════════════════════════════════╝
+""")
+
+time_sprite = ("""
+╔════════════════════════════════════════════════════════════════════════╗
+║                       ─────  PASO 2 DE 2  ─────                        ║
+║                                                                        ║
+║            █    █ ██████ █    █ █    █ ██████  ████   █████            ║
+║            ██  ██   ██   ██   █ █    █   ██   █    █ █                 ║
+║            █ ██ █   ██   █ ██ █ █    █   ██   █    █  ████             ║
+║            █    █   ██   █   ██ █    █   ██   █    █      █            ║
+║            █    █ ██████ █    █  ████    ██    ████  █████             ║
+║                                                                        ║
+║                   ¿cuanto tiempo tienes cada sesion?                   ║
+╚════════════════════════════════════════════════════════════════════════╝
+""")
+
+calentamiento_sprite = (r"""
+╔════════════════════════════════════════════════════════════════════════╗
+║           ─────  {} MINUTOS AL INICIO DE CADA SESION  ─────            ║
+║                                                                        ║
+║    ███  ██  █    ████ █  █ ████  ██  █   █ ████ ████ █  █ ████  ██     ║
+║   █    █  █ █    █    ██ █  ██  █  █ ██ ██  ██  █    ██ █  ██  █  █    ║
+║   █    ████ █    ███  █ ██  ██  ████ █ █ █  ██  ███  █ ██  ██  █  █    ║
+║   █    █  █ █    █    █  █  ██  █  █ █   █  ██  █    █  █  ██  █  █    ║
+║    ███ █  █ ████ ████ █  █  ██  █  █ █   █ ████ ████ █  █  ██   ██     ║
+║                                                                        ║
+║            \o/         o         \o/         o         \o/             ║
+║             |         /|\         |         /|\         |              ║
+║            / \        / \        / \        / \        / \             ║
+║                                                                        ║
+║                     muevete antes de moverlo todo                      ║
+╚════════════════════════════════════════════════════════════════════════╝
+""")
+
+training_sprite=(r"""
+╔════════════════════════════════════════════════════════════════════════╗
+║                     ─────  TU PLAN SEMANAL  ─────                      ║
+║                                                                        ║
+║   ████ █  █ ████ ███  ████ █  █  ██  █   █ ████ ████ █  █ ████  ██     ║
+║   █    ██ █  ██  █  █ █    ██ █ █  █ ██ ██  ██  █    ██ █  ██  █  █    ║
+║   ███  █ ██  ██  ███  ███  █ ██ ████ █ █ █  ██  ███  █ ██  ██  █  █    ║
+║   █    █  █  ██  █ █  █    █  █ █  █ █   █  ██  █    █  █  ██  █  █    ║
+║   ████ █  █  ██  █  █ ████ █  █ █  █ █   █ ████ ████ █  █  ██   ██     ║
+║                                                                        ║
+║                 [==|==]           o           [==|==]                  ║
+║                    |             /|\             |                     ║
+║                   / \            / \            / \                    ║
+║                                                                        ║
+║                        una serie mas y lo dejo                         ║
+╚════════════════════════════════════════════════════════════════════════╝
+""")
+
+txt_sprite=(r"""
+    ________________________________________________________________
+    |                                                            \
+    |                                                             \
+    |                                                              |
+    |  ████ █   █ ████    ███ █  █  ██  ███  ███   ██  ███   ██    |
+    |   ██   █ █   ██    █    █  █ █  █ █  █ █  █ █  █ █  █ █  █   |
+    |   ██    █    ██    █ ██ █  █ ████ ███  █  █ ████ █  █ █  █   |
+    |   ██   █ █   ██    █  █ █  █ █  █ █ █  █  █ █  █ █  █ █  █   |
+    |   ██  █   █  ██     ███  ██  █  █ █  █ ███  █  █ ███   ██    |
+    |                                                              |
+    |     ____________________________________________________     |
+    |     ____________________________________________________     |
+    |     ____________________________________________________     |
+    |     ____________________________________________________     |
+    |                                                              |
+    |______________________________________________________________|
+""")
+
+einstein_sprite=(r"""
+       -''--.
+       _`>   `\.-'<
+    _.'     _     '._
+  .'   _.='   '=._   '.
+  >_   / /_\ /_\ \   _<
+    / (  \o/\\o/  ) \
+    >._\ .-,_)-. /_.<
+        /__/ \__\ 
+          '---'     E=mc^2
+
+""")
+
+
+def assign_exercises(training_days, training_minutes,exercises_training_time):
+
     exercise_number = ((training_minutes -exercises_training_time)// 5)
     exercise_list, calentamiento_list = get_exercise_list()
 
@@ -40,12 +166,12 @@ def get_warn_up(calentamiento_list, exercises_training_time):
 
         name_warn_up = copy_warn_up[warn_up_groups[distribute_warn_up]]
         if not name_warn_up:
-            name_warn_up = (deepcopy(calentamiento_list[warn_up_groups[distribute_warn_up]]))
+            copy_warn_up[warn_up_groups[distribute_warn_up]] = (deepcopy(calentamiento_list[warn_up_groups[distribute_warn_up]]))
             shuffle(name_warn_up)
 
         warn_up.append(name_warn_up.pop())
 
-    diccionario_warn_up = {"calentamiento(10 minutos x día)": warn_up}
+    diccionario_warn_up = {"calentamiento({} minutos x día)".format(exercises_training_time): warn_up}
     return diccionario_warn_up
 
 
@@ -81,7 +207,7 @@ def get_exercise_list():
     exercise_list = {}
     training_list = {}
     actual_list = exercise_list
-    with open("rutina-entreno.txt", "r") as ejercicios:
+    with open("rutina-entreno.txt", "r",  encoding='utf-8') as ejercicios:
         content = ejercicios.read()
         processed_content = content.strip().splitlines()
         for line in processed_content:
@@ -104,11 +230,16 @@ def get_exercise_list():
 
 
 def get_training_days(min_training_days, max_training_days):
+    sleep(1)
+    limpiar_terminal()
+    print(days_sprite)
     days = None
     while not days:
         try:
-            days = int(input("\n¿Cuantos días a la semana vas a entrenar? [min: {}] [max: {}]: "
+            days = int(input("\n[min: {}] [max: {}]: "
                              .format(min_training_days, max_training_days)))
+            if days == 0:
+                days = 1
         except ValueError:
             print("\nValor incorrecto, introduzca un número")
             days = None
@@ -120,22 +251,33 @@ def get_training_days(min_training_days, max_training_days):
     if days < min_training_days:
         print("Se han introducido muy pocos días, se cambiará por el mínimo de {} días".format(min_training_days))
         days = min_training_days
+        sleep(0.5)
+        input("pulsa Enter para continuar: ")
         return days
     elif days > max_training_days:
         print("Se han introducido demasiados días, se cambiará por el máximo de {} días".format(max_training_days))
         days = max_training_days
+        sleep(0.5)
+        input("pulsa Enter para continuar: ")
         return days
-
+    print("La respuesta está dentro de los límites :=)")
+    sleep(0.5)
+    input("pulsa Enter para continuar: ")
     return days
 
 
 def get_training_minutes(min_training_minutes, max_training_minutes):
+    sleep(1)
+    limpiar_terminal()
+    print(time_sprite)
     minutes = None
     max_training_hours = int(max_training_minutes / 60)
     while not minutes:
         try:
-            minutes = int(input("\n¿Cuantos minutos vas a entrenar cada día? [min: {}] [max: {} ({}h)]: "
+            minutes = int(input("\n[min: {}] [max: {} ({}h)]: "
                                    .format(min_training_minutes, max_training_minutes, max_training_hours)))
+            if minutes == 0:
+                minutes = 0
         except ValueError:
             print("Valor incorrecto, introduzca un número")
             minutes = None
@@ -147,42 +289,77 @@ def get_training_minutes(min_training_minutes, max_training_minutes):
         print("Se ha introducido muy poco tiempo, se cambiará por el mínimo de {} minutos"
               .format(min_training_minutes))
         minutes = min_training_minutes
+        sleep(0.5)
+        input("pulsa Enter para continuar: ")
         return minutes
     elif minutes > max_training_minutes:
         print("Se ha introducido demasiado tiempo, se cambiará por el máximo de {} horas ({} minutos)"
               .format(max_training_hours, max_training_minutes))
         minutes = max_training_minutes
+        sleep(0.5)
+        input("pulsa Enter para continuar: ")
         return minutes
+    print("La respuesta está dentro de los límites :=)")
+    sleep(0.5)
+    input("pulsa Enter para continuar: ")
     return minutes
 
 
-def final_format(warn_up,exercises):
+def final_format(warn_up,exercises,exercises_training_time):
+    text = []
 
     for calentamiento, warns_ups in warn_up.items():
-        print("*" * 40)
-        print("{}:".format(calentamiento.upper().replace("_", " ")))
-        print("*" * 40 + "\n")
-        for index, exercise_group in enumerate(warns_ups):
-            print("\t{} - {}".format(index,exercise_group))
-
+        text.append(calentamiento_sprite.format(exercises_training_time)+"\n")
+        text.append("*" * 40)
+        text.append("{}:".format(calentamiento.upper().replace("_", " ")))
+        text.append("*" * 40 + "\n")
+        for index, exercise_group in enumerate(warns_ups, start=1):
+            text.append("\t{} - {}".format(index,exercise_group))
+            text.append("\n")
+    text.append(training_sprite + "\n")
     for day, training in exercises.items():
-        print("=" * 40)
-        print("{}:".format(day.upper().replace("_", " ")))
-        print("=" * 40 + "\n")
+        text.append("=" * 40)
+        text.append("{}:".format(day.upper().replace("_", " ")))
+        text.append("=" * 40 + "\n")
         for exercise_group in training:
-            print("\t{}".format(exercise_group.upper()))
+            text.append("\t{}".format(exercise_group.upper()))
             for index, exercise in enumerate(training[exercise_group], start=1):
-                print("\t\t{} - {}".format(index, exercise))
-        print("\n")
+                text.append("\t\t{} - {}".format(index, exercise))
+        text.append("\n")
 
-
-        save_to_txt = input("¿Quieres guardar el resultado en un archivo .txt? [S/N]: ")
+    while True:
+        save_to_txt = input("¿Quieres guardar el resultado en un .txt? [S/N]: ")
         if save_to_txt.upper() == "S":
-            with open("entreno.txt", "w") as file:
-
-        elif save_to_txt.upper() == "N":
-            print("No Se ha guardado un archivo")
+            file_name = "resultado.txt"
+            with open(file_name, "w",  encoding='utf-8') as file:
+                file.write("\n".join(text))
+                sleep(0.5)
+            print("Guardando el archivo...")
+            sleep(1)
+            limpiar_terminal()
+            print(txt_sprite)
+            print("Archivo guardado correctamente como {} en la carpeta del programa".format(file_name))
+            input("pulsa Enter para ver la rutina por terminal: ")
+            print("\n".join(text))
             return
+        elif save_to_txt.upper() == "N":
+            sleep(0.5)
+            print("No se ha guardado el archivo")
+            sleep(1)
+            limpiar_terminal()
+            print("\n".join(text))
+            return
+        else:
+            print("Respuesta incorrecta, introduzca [S/N]")
+
+
+def limpiar_terminal():
+    # Si es Windows ('nt')
+    if os.name == 'nt':
+        os.system('cls')
+    # Si es Linux o Mac
+    else:
+        os.system('clear')
 
 
 def main():
@@ -190,14 +367,21 @@ def main():
     max_training_days = 5
     min_training_minutes = 50
     max_training_minutes = 300
-
+    exercises_training_time = 10
+    limpiar_terminal()
+    print(initial_sprite)
+    sleep(1)
     training_days = get_training_days(min_training_days, max_training_days)
     training_minutes = get_training_minutes(min_training_minutes, max_training_minutes)
 
-    exercises, warn_up = assign_exercises(training_days,training_minutes)
+    exercises, warn_up = assign_exercises(training_days,training_minutes, exercises_training_time)
+    limpiar_terminal()
+    print(einstein_sprite)
     print("\nCalculando resultado...")
     sleep(1)
-    final_format(warn_up, exercises)
-
+    final_format(warn_up, exercises, exercises_training_time)
+    input("\nPresione ENTER para acabar: ")
+    limpiar_terminal()
+    print(final_sprite)
 if __name__ == "__main__":
     main()
