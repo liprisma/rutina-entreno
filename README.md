@@ -3,8 +3,8 @@
 ### MacOS, Linux y gitTerminal(Windows)
 ```
 git clone https://github.com/liprisma/rutina-entreno.git
-git cd rutina-entreno
-git python3
+cd rutina-entreno
+python3 rutina_entreno.py
 ```
 Una vez se ejecute el programa siga las instrucciones del programa y obtendrá su rutina
 Nota:
